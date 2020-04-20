@@ -1,0 +1,2 @@
+# SequelizeCelke
+Start sequelize
