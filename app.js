@@ -1,59 +1,48 @@
-const express = require('express')
-const app = express()
-const handlebars = require('express-handlebars')
-const Sequelize = require('sequelize')
-const bodyParser = require('body-Parser')
+const express = require("express");
+const app = express();
+const handlebars = require("express-handlebars");
+const bodyParser = require("body-parser")
+const moment = require('moment')
+const Pagamento = require("./models/Pagamento")
 
-//configuração de handlebars
-  app.engine('handlebars', handlebars({defaultLayout: 'main'}))
-  app.set('view engine', 'handlebars')
 
-//configuraçao de sequelize
-  const sequelize = new Sequelize('celke', 'root', '@AnaClara021184', {
-    host: 'localhost',
-    dialect: 'mysql'
-  });
-  sequelize.authenticate().then(function(){
-    console.log('conexao realizada')
-  }).catch(function(err){
-    console.log('Erro ao realizar conecção '+err)
-  })
+app.engine('handlebars', handlebars({
+    defaultLayout: 'main',
+    helpers: {
+        formatDate: (date) => {
+            return moment(date).format('DD/MM/YYYY')
+        }
+    }
+}))
+app.set('view engine', 'handlebars')
 
-//configuracao do bodyParser
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-//rotas
+//Rotas
+
 app.get('/pagamento', function(req, res){
-  res.render('pagamento')
+    Pagamento.findAll({order: [['id', 'DESC']]}).then(function(pagamentos){
+        res.render('pagamento', {pagamentos: pagamentos});
+    })
+    
+});
+
+app.get('/cad-pagamento', function(req, res){
+    res.render('cad-pagamento');
+});
+
+app.post('/add-pagamento', function(req, res){
+    Pagamento.create({
+        nome: req.body.nome,
+        valor: req.body.valor
+    }).then(function(){
+        res.redirect('/pagamento')
+        //res.send("Pagamento cadastro com sucesso!")
+    }).catch(function(erro){
+        res.send("Erro: Pagamento não foi cadastrado com sucesso!" + erro)
+    })
+    //res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>") 
 })
-
-app.get('/cad-pag', function(req, res){
-  res.render('cad-pag')
-})
-
-app.post('/add-pag', function(req, res){
-  res.send("Nome: " +req.body.nome+ "<br>Valor " +req.body.valor+ "<br>")
-})
-
-
-
-/*  criacao da tabela pagamentos
-  const Pagamentos = sequelize.define('pagamentos', {
-    nome: {
-      type: Sequelize.STRING,
-    },
-    valor: {
-      type: Sequelize.DOUBLE
-    }
-  });
-
-
-//Pagamentos.sync({force: true});
-
-Pagamentos.create({
-  nome: "Energia2",
-  valor: "230"
-})*/
 
 app.listen(8080);
