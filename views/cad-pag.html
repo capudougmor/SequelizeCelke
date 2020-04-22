@@ -1,3 +1,6 @@
+{% extends "main.html" %}
+
+{% block content %}
 <h1>Formulário para cadatrar pagamento</h1>
 <form action="/add-pag" method="POST">
     <label>Nome</label>
@@ -8,3 +11,4 @@
 
     <button type="submit">Cadastrar</button>
 </form>
+{% endblock %}

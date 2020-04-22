@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1>Listar pagamento</h1>
+    {% for pagamento in pagamentos %}
+        <p>Nome: {{pagamento.nome}} </p>
+        Valor: {{pagamento.valor}} 
+
+    {% endfor %}
+{% endblock %}

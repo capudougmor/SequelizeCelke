@@ -1,20 +1,14 @@
 const express = require("express");
 const app = express();
-const handlebars = require("express-handlebars");
+const nunjucks = require('nunjucks')
 const bodyParser = require("body-parser")
 const moment = require('moment')
 const Pagamento = require("./models/Pagamento")
 
-
-app.engine('handlebars', handlebars({
-    defaultLayout: 'main',
-    helpers: {
-        formatDate: (date) => {
-            return moment(date).format('DD/MM/YYYY')
-        }
-    }
-}))
-app.set('view engine', 'handlebars')
+nunjucks.configure('./views', {
+    express: app,
+    noCache: true,
+})
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -23,16 +17,16 @@ app.use(bodyParser.json())
 
 app.get('/pagamento', function(req, res){
     Pagamento.findAll({order: [['id', 'DESC']]}).then(function(pagamentos){
-        res.render('pagamento', {pagamentos: pagamentos});
+        res.render('pagamento.html', {pagamentos: pagamentos});
     })
     
 });
 
-app.get('/cad-pagamento', function(req, res){
-    res.render('cad-pagamento');
+app.get('/cad-pag', function(req, res){
+    res.render('cad-pag.html');
 });
 
-app.post('/add-pagamento', function(req, res){
+app.post('/add-pag', function(req, res){
     Pagamento.create({
         nome: req.body.nome,
         valor: req.body.valor

@@ -5,7 +5,7 @@ const sequelize = new Sequelize('celke', 'root', '@AnaClara021184', {
   dialect: 'mysql'
 });
 sequelize.authenticate().then(function(){
-  console.log('conexao realizada')
+  console.log('conexao com banco de dados realizada ')
 }).catch(function(err){
   console.log('Erro ao realizar conecção '+err)
 })
