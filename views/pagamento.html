@@ -4,7 +4,10 @@
     <h1>Listar pagamento</h1>
     {% for pagamento in pagamentos %}
         <p>Nome: {{pagamento.nome}} </p>
-        Valor: {{pagamento.valor}} 
+        <p> Valor: {{pagamento.valor}} </p>
+        <p> Cadastrado: {{pagamento.createdAt | date("D MMM") }} </p>
+        <a href="del-pag/{{pagamento.id}} "><button>Apagar</button></a>
+        <br>
 
     {% endfor %}
 {% endblock %}

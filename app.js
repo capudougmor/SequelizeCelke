@@ -2,13 +2,22 @@ const express = require("express");
 const app = express();
 const nunjucks = require('nunjucks')
 const bodyParser = require("body-parser")
-const moment = require('moment')
+var dateFilter = require('nunjucks-date-filter');
 const Pagamento = require("./models/Pagamento")
 
-nunjucks.configure('./views', {
-    express: app,
-    noCache: true,
-})
+function setUpNunjucks(expressApp) {
+
+    let env = nunjucks.configure('views', {
+        autoescape: true,
+        express: app
+    });
+  
+    // note that 'date' is the function name you'll use in the template. As shown in nunjucks-date-filter's readme
+    env.addFilter('date', dateFilter);
+  
+}
+  
+setUpNunjucks();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -37,6 +46,16 @@ app.post('/add-pag', function(req, res){
         res.send("Erro: Pagamento não foi cadastrado com sucesso!" + erro)
     })
     //res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>") 
+})
+
+app.get('/del-pag/:id', function(req, res){
+    Pagamento.destroy({
+        where: {'id': req.params.id}
+    }).then(function(){
+        res.redirect('/pagamento')
+    }).catch(function(erro){
+        res.send('Erro ao apagar item' + erro)
+    })
 })
 
 app.listen(8080);
