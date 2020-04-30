@@ -1,13 +1,20 @@
 {% extends "main.html" %}
 
 {% block content %}
-    <h1>Listar pagamento</h1>
-    {% for pagamento in pagamentos %}
-        <p>Nome: {{pagamento.nome}} </p>
-        <p> Valor: {{pagamento.valor}} </p>
-        <p> Cadastrado: {{pagamento.createdAt | date("D MMM") }} </p>
-        <a href="del-pag/{{pagamento.id}} "><button>Apagar</button></a>
-        <br>
-
-    {% endfor %}
+<div>
+    <header>
+        <h1>Lista de Pagamentos</h1>
+        <a href="/cad-pag">Novo Pagamento</a>
+    </header>
+    <main>
+        {% for pagamento in pagamentos %}
+            <p>Nome: {{pagamento.nome}} </p>
+            <p> Valor: {{pagamento.valor}} </p>
+            <p> Cadastrado: {{pagamento.createdAt | date("D MMM") }} </p>
+            <a href="del-pag/{{pagamento.id}} "><button>Apagar</button></a>
+            <br>
+    
+        {% endfor %}
+    </main>
+</div>
 {% endblock %}

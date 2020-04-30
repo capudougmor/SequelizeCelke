@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url(fundo.jpg);
+  background-size: cover;
+}
+
+div {
+  width: 85%;
+  max-width: 400px;
+  background-color: #81011f11;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  
+  text-align: center;
+  box-shadow: 0 0 20px #c5c5c5;
+  font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+  align-content: flex-start;
+  justify-content: right;
+}
+
+div header {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+div h1 {
+  margin-top: 0;
+  font-weight: 200;  
+  color: aliceblue;
+}
+
+div a {
+  width: 140px;
+  height: 40px;
+  margin-top: 0;
+
+  color: white;
+  text-decoration: none;  
+}
+
+form {
+  justify-items: start;
+}
+
+label {
+  font-weight: 300;
+  line-height: 6px;
+  color: aliceblue;
+  margin-top: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+}
+
+label input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid gray;
+
+  justify-self: left;
+
+}
+
+button {
+  width: 100px;
+  height: 30px;
+
+  margin: 20px 0;
+
+  background: aliceblue;
+  border: none;
+  border-radius: 4px;
+
+  color: rgb(12, 6, 7);
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+
+  justify-self: left;
+  align-self: initial;
+}

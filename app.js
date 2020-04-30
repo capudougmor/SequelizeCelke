@@ -5,16 +5,17 @@ const bodyParser = require("body-parser")
 var dateFilter = require('nunjucks-date-filter');
 const Pagamento = require("./models/Pagamento")
 
-function setUpNunjucks(expressApp) {
+app.use(express.static('./public'))
 
+//configuracao do nunjucks
+function setUpNunjucks(expressApp) {
     let env = nunjucks.configure('views', {
         autoescape: true,
         express: app
     });
   
     // note that 'date' is the function name you'll use in the template. As shown in nunjucks-date-filter's readme
-    env.addFilter('date', dateFilter);
-  
+    env.addFilter('date', dateFilter);  
 }
   
 setUpNunjucks();

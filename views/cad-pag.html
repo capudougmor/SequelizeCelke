@@ -1,14 +1,22 @@
 {% extends "main.html" %}
 
 {% block content %}
-<h1>Formulário para cadatrar pagamento</h1>
-<form action="/add-pag" method="POST">
-    <label>Nome</label>
-    <input type="text" name="nome"><br><br>
-
-    <label>Valor</label>
-    <input type="text" name="valor"><br><br>
-
-    <button type="submit">Cadastrar</button>
-</form>
+<div id="form">
+    <header>
+        <h1>Cadastrar Pagamento</h1>
+        <a href="/pagamento">Lista de pagamentos</a>
+    </header>
+    
+    <form action="/add-pag" method="POST">
+        <label>Nome:
+            <input type="text" name="nome" placeholder="Tipo de pagamento"><br><br>
+        </label>
+    
+        <label>Valor:
+            <input type="text" name="valor" placeholder="Entre com o valor"><br><br>
+        </label>
+        
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
 {% endblock %}
