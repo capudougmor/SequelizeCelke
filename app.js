@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 
 //Rotas
 
-app.get('/pagamento', function(req, res){
+app.get('/', function(req, res){
     Pagamento.findAll({order: [['id', 'DESC']]}).then(function(pagamentos){
         res.render('pagamento.html', {pagamentos: pagamentos});
     })
@@ -41,7 +41,7 @@ app.post('/add-pag', function(req, res){
         nome: req.body.nome,
         valor: req.body.valor
     }).then(function(){
-        res.redirect('/pagamento')
+        res.redirect('/')
         //res.send("Pagamento cadastro com sucesso!")
     }).catch(function(erro){
         res.send("Erro: Pagamento não foi cadastrado com sucesso!" + erro)
@@ -53,7 +53,7 @@ app.get('/del-pag/:id', function(req, res){
     Pagamento.destroy({
         where: {'id': req.params.id}
     }).then(function(){
-        res.redirect('/pagamento')
+        res.redirect('/')
     }).catch(function(erro){
         res.send('Erro ao apagar item' + erro)
     })
