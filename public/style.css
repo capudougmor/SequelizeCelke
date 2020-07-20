@@ -6,16 +6,23 @@
 
 html {
   font-size: 62.5%;
-}
-
-body {
   background: url(fundo.jpg);
   background-size: cover;
 }
 
+body, ul, li, p {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 1.2rem;
+  font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
 div#form,
 div#pag {
-  width: 40%;
+  width: 70%;
   max-width: 800px;
   background-color: #81011f49;
   position: absolute;
@@ -28,22 +35,20 @@ div#pag {
   
   text-align: center;
   box-shadow: 0 0 20px #c5c5c5;
-  font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
   align-content: flex-start;
   justify-content: right;
 }
 
 div header {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));  
 
   padding: 28px;
 }
 
 div h1 {
   margin-top: 0;
-  font-size: 2.2rem;
+  font-size: 2rem;
   text-align: left;
   color: aliceblue;
 }
@@ -58,7 +63,7 @@ div a {
 }
 
 label {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   color: aliceblue;
 
   display: block;
@@ -72,44 +77,61 @@ label input {
   border: 1px solid gray;
 }
 
+/*lista de pagamentos*/
+main#card {
+  display: block;
+}
+
+main div#pagamentos {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  text-align: left;
+  background-color: whitesmoke;
+  border-radius: 6px;
+  border: none;
+
+  justify-content: space-between;
+}
+
+main div#pagamentos div {
+  display: flex;
+}
+
+p {
+  font-size: 1.6rem;
+  color: black;
+  
+  margin: 10px;
+}
+
+
+
 button {
-  width: 100px;
-  height: 30px;
+  width: 80px;
+  height: 20px;
 
-  margin: 20px 0;
+  margin: 10px 10px;
+  background-color: rgba(22, 65, 60);
 
-  background: aliceblue;
   border: none;
   border-radius: 4px;
 
-  color: rgb(12, 6, 7);
+  color:whitesmoke;
   font-weight: 700;
   font-size: 1.2rem;
   text-decoration: none;
 
   cursor: pointer;
-
 }
 
-button:hover {
-  background-color: #0984;
-  color: white;
-  transition: 0.3s;
-}
-
-/*lista de pagamentos*/
-#pag {
-  
-}
-
-#pag {
-
-}
 
 @media (max-width: 700px) {
-  body {
+
+  html {
     font-size: 50%;
   }
+
 
   div header {
     display: flex;
@@ -125,5 +147,10 @@ button:hover {
   div header h1 {
     text-align: center;
   }
+
+
+  main div#pagamentos {
+    align-items: center;
+    justify-content: center;
 
 }

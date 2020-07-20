@@ -3,17 +3,19 @@
 {% block content %}
 <div id="pag">
     <header>
-        <h1>Lista de Pagamentos</h1>
+        <h1>Lista de Compras</h1>
         <a href="/cad-pag">Novo Pagamento</a>
     </header>
     <main id="card">
             {% for pagamento in pagamentos %}
                 <div id="pagamentos">
-                    <p>Nome: {{pagamento.nome}} </p>
-                    <p> Valor: {{pagamento.valor}} </p>
-                    <p> Cadastrado: {{pagamento.createdAt | date("D MMM") }} </p>
-                    <a href="del-pag/{{pagamento.id}} "><button>Apagar</button></a>
-                    <br>
+                    <div>
+                        <p>Nome: {{pagamento.nome}} </p>
+                        <p> Valor: {{pagamento.valor}} </p>
+                        <p> Data: {{pagamento.createdAt | date("D MMM") }} </p>
+                    </div>
+                    
+                    <a href="del-pag/{{pagamento.id}} "><button>Efetivado</button></a> 
                 </div>
         
             {% endfor %}
